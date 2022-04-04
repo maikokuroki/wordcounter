@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
+body{
+    font-family:'Comfortaa', cursive;
+    background-color: #e6e6fa;
+}
+
+li {
+    margin-right: 8px;
+  }
+
+.name-area {
+    background-color: #eefae6;
+    width: 100%;
+    margin: 0;
+}
+
+.list-area {
+    background-color: #fae6f6;
+}
+
+.row {
+    display: inline-flex;
+}
+
+.search-area {
+    position: right;
+}
