@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './styles.css';
 import  { db } from './index';
-import { getFirestore, collection, addDoc, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 
 import { NameInput } from './components/NameInput';
@@ -42,8 +42,7 @@ function App() {
       alert(`${name} have already know that word!😎`);
     } else {
       alert(`${formattedWord} have not added yet. Would you like to add it to the list?`)
-    }
-    setWord('');
+    };
   }
 
   const onClickRemove = (index) => {
@@ -54,18 +53,6 @@ function App() {
 
   const count = wordArray.length;
 
-  //get data from firestore and store data in state
-  /*
-  useEffect(() => {
-    (async() => {
-      const resWords = await db.collection('wordList').doc('wordData').get();
-      //store in state
-      setWordArray(resWords.data().words);
-      console.log(resWords);
-    })()
-  }, [db]);
-*/
-
 const wordRef = async(wordData) => {
   const noteSnapshot = await getDoc(doc(db, 'wordList', wordData));
   console.log(noteSnapshot);
@@ -74,21 +61,14 @@ const wordRef = async(wordData) => {
 console.log(wordRef);
 
 
-  const onClickAdd = async () => {
+  const onClickAdd = () => {
     let formattedWord = word[0].toUpperCase() + word.slice(1).toLowerCase();
     if(wordArray.includes(formattedWord)){
       alert('That word already exist');
       return;
-    } else {
-      const newWordArray = [...wordArray, formattedWord];
-      setWordArray(newWordArray);
-      const wordsCollectionRef = collection(db, 'wordList');
-      const documentRef = await addDoc(wordsCollectionRef, {
-        words: formattedWord
-      });
-      console.log(documentRef);
-    };
-
+    } 
+    const newWordArray = [...wordArray, formattedWord];
+    setWordArray(newWordArray);
     setWord('');
   }
 

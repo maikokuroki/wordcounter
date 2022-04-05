@@ -9,7 +9,7 @@ export const WordList = (props) => {
                     <List>
                         <ListItem key={item.index}>
                             <ListItemText>
-                                {wordList.indexOf(item)+1}
+                                ({wordList.indexOf(item)+1})
                                 {item}
                             </ListItemText>
                             <Button onClick={onClick}>Remove</Button>
